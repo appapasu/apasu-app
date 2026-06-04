@@ -15,3 +15,11 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 window.db = db;
+import { ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+set(ref(db, "prova_connexio"), {
+  missatge: "Firebase connectat amb APASU",
+  data: new Date().toISOString()
+});
+
+console.log("Prova enviada a Firebase");
