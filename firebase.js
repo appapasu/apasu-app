@@ -14,11 +14,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-window.db = db;
-
 set(ref(db, "prova_connexio"), {
   missatge: "Firebase connectat amb APASU",
   data: new Date().toISOString()
 });
-
-console.log("Prova enviada a Firebase");
