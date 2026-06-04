@@ -1,176 +1,122 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ca">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APASU App</title>
-
-<style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f4f8ff;
-  margin:0;
-  padding:0;
-}
-
-header{
-  background:#0b5ea8;
-  color:white;
-  padding:20px;
-  text-align:center;
-}
-
-.container{
-  padding:20px;
-}
-
-.card{
-  background:white;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:15px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
-}
-
-button{
-  background:#0b5ea8;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-select{
-  padding:10px;
-  width:100%;
-  margin-top:10px;
-}
-
-.menu{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:20px;
-}
-
-.menu button{
-  height:60px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APASU Cloud</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f4f8ff;margin:0;padding:0;color:#222;}
+    header{background:#0b5ea8;color:white;padding:25px 15px;text-align:center;}
+    header h1{margin:0;font-size:34px;}
+    header p{margin:8px 0 0;font-size:18px;}
+    .container{padding:18px;max-width:900px;margin:auto;}
+    .card{background:white;border-radius:16px;padding:18px;margin-bottom:18px;box-shadow:0 3px 12px rgba(0,0,0,0.10);}
+    input,select,textarea{width:100%;box-sizing:border-box;padding:12px;margin-top:8px;margin-bottom:12px;border:1px solid #bbb;border-radius:8px;font-size:16px;}
+    button{background:#0b5ea8;color:white;border:none;padding:12px 18px;border-radius:10px;cursor:pointer;font-size:16px;margin:4px 0;}
+    button.danger{background:#b00020;}
+    .menu{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+    .menu button{height:58px;font-weight:bold;}
+    .hidden{display:none;}
+    .soci-item{border-left:5px solid #0b5ea8;padding:12px;margin-bottom:10px;background:#f9fbff;border-radius:10px;}
+  </style>
 </head>
-
 <body>
 
 <header>
-<h1>APASU</h1>
-<p>Associació de Pares d'Autisme de Sueca</p>
+  <h1>APASU Cloud</h1>
+  <p>Associació de Pares d'Autisme de Sueca</p>
 </header>
 
 <div class="container">
 
-<div class="card">
-<h2>Idioma</h2>
+  <div id="login" class="card">
+    <h2>Accés Demo</h2>
+    <label>Rol</label>
+    <select id="rol">
+      <option>Soci</option>
+      <option>Tresoreria</option>
+      <option>Junta Directiva</option>
+      <option>Administrador</option>
+    </select>
+    <button onclick="entrar()">Entrar</button>
+  </div>
 
-<select id="idioma">
-<option>Valencià</option>
-<option>Castellano</option>
-</select>
-</div>
+  <div id="app" class="hidden">
 
-<div class="card">
-<h2>Accés Demo</h2>
+    <div class="card">
+      <h2>Benvingut/da</h2>
+      <p>Rol: <strong id="rolActual"></strong></p>
+    </div>
 
-<select id="rol">
-<option>Soci</option>
-<option>Secretaria</option>
-<option>Tresoreria</option>
-<option>Junta Directiva</option>
-<option>Administrador</option>
-</select>
+    <div class="menu">
+      <button onclick="mostrarSeccio('socis')">Socis</button>
+      <button onclick="mostrarSeccio('activitats')">Activitats</button>
+      <button onclick="mostrarSeccio('rebuts')">Rebuts</button>
+      <button onclick="mostrarSeccio('finances')">Finances</button>
+      <button onclick="mostrarSeccio('comunicats')">Comunicats</button>
+      <button onclick="mostrarSeccio('inscripcions')">Inscripcions</button>
+    </div>
 
-<br><br>
+    <div id="seccioSocis" class="card">
+      <h2>Nou Soci APASU</h2>
 
-<button onclick="entrar()">
-Entrar
-</button>
-</div>
+      <label>Nom i cognoms</label>
+      <input type="text" id="nom" placeholder="Nom i cognoms">
 
-<div id="app"></div>
+      <label>Correu electrònic</label>
+      <input type="email" id="email" placeholder="correu@exemple.com">
 
+      <label>Telèfon</label>
+      <input type="text" id="telefon" placeholder="Telèfon">
+
+      <label>Observacions</label>
+      <textarea id="observacions" placeholder="Observacions"></textarea>
+
+      <button onclick="guardarSoci()">Guardar soci</button>
+    </div>
+
+    <div id="llistaSocis" class="card">
+      <h2>Llistat de socis</h2>
+      <p>Carregant...</p>
+    </div>
+
+    <div id="seccioActivitats" class="card hidden"><h2>Activitats</h2><p>Mòdul preparat per a la fase 2.</p></div>
+    <div id="seccioRebuts" class="card hidden"><h2>Rebuts</h2><p>Mòdul preparat per a quotes i pagaments.</p></div>
+    <div id="seccioFinances" class="card hidden"><h2>Finances</h2><p>Mòdul preparat per a ingressos i despeses.</p></div>
+    <div id="seccioComunicats" class="card hidden"><h2>Comunicats</h2><p>Mòdul preparat per a avisos als socis.</p></div>
+    <div id="seccioInscripcions" class="card hidden"><h2>Inscripcions</h2><p>Mòdul preparat per a inscripcions a activitats.</p></div>
+
+  </div>
 </div>
 
 <script>
-
 function entrar(){
+  const rol = document.getElementById("rol").value;
+  document.getElementById("rolActual").innerText = rol;
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("app").classList.remove("hidden");
+}
 
-let rol=document.getElementById("rol").value;
+function mostrarSeccio(seccio){
+  const seccions = ["Socis","Activitats","Rebuts","Finances","Comunicats","Inscripcions"];
+  seccions.forEach(nom => {
+    const id = "seccio" + nom;
+    if(document.getElementById(id)) document.getElementById(id).classList.add("hidden");
+  });
 
-document.getElementById("app").innerHTML=`;
+  document.getElementById("llistaSocis").classList.add("hidden");
 
-<div class="card">
-<h2>Benvingut/da</h2>
-<p>Rol: ${rol}</p>
-</div>
-
-<div class="menu">
-
-<button>Socis</button>
-
-<button>Activitats</button>
-
-<button>Rebuts</button>
-
-<button>Finances</button>
-
-<button>Comunicats</button>
-
-<button>Inscripcions</button>
-
-</div>
-
-<div class="card">
-    <h2>Nou Soci APASU</h2>
-
-    <input type="text" id="nom" placeholder="Nom i Cognoms">
-    <br><br>
-
-    <input type="email" id="email" placeholder="Email">
-    <br><br>
-
-    <input type="text" id="telefon" placeholder="Telèfon">
-    <br><br>
-
-    <button onclick="guardarSoci()">
-        Guardar Soci
-    </button>
-</div>
-
-<div id="llistaSocis"></div>
-
-</div>
-
-`;
-
-}</script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  if(seccio === "socis"){
+    document.getElementById("seccioSocis").classList.remove("hidden");
+    document.getElementById("llistaSocis").classList.remove("hidden");
+  } else {
+    const id = "seccio" + seccio.charAt(0).toUpperCase() + seccio.slice(1);
+    document.getElementById(id).classList.remove("hidden");
+  }
+}
+</script>
 
 <script type="module" src="firebase.js"></script>
 
-</body>
-</html>
-
-
-
-<script type="module" src="firebase.js"></script>
-
-</body>
-</html>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-
- <script type="module" src="firebase.js"></script>
 </body>
 </html>

@@ -1,16 +1,13 @@
-# APASU App
+# APASU Cloud
 
-Aplicació oficial de l'Associació de Pares d'Autisme de Sueca (APASU).
+Aplicació web inicial per a la gestió de socis d'APASU.
 
-## Funcions previstes
+Fitxers:
+- index.html
+- firebase.js
 
-- Gestió de socis
-- Activitats i inscripcions
-- Rebuts i quotes
-- Pagaments (Bizum, transferència i efectiu)
-- Comunicats
-- Finances
-- Control d'assistència
-- Notificacions
-- Valencià / Castellà
-- Android i iPhone
+Funcions actuals:
+- Connexió amb Firebase Realtime Database
+- Alta de socis
+- Llistat automàtic de socis
+- Eliminació de socis
