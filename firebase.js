@@ -1,6 +1,5 @@
-import { import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyCTvqB1bsyHk5yEyZeox-XBdN7hHIMiRtY",
@@ -16,7 +15,6 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 window.db = db;
-import { ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 set(ref(db, "prova_connexio"), {
   missatge: "Firebase connectat amb APASU",
