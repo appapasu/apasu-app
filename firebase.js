@@ -18,6 +18,9 @@ set(ref(db, "prova_connexio"), {
   missatge: "APASU Cloud connectat",
   data: new Date().toISOString()
 });
-window.guardarSoci = function() {
-  alert("Funciona");
+window.guardarSoci = function(){
+
+  alert("Botó de soci funcionant");
+
+}
 }
