@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APASU App</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f8ff;
+  margin:0;
+  padding:0;
+}
+
+header{
+  background:#0b5ea8;
+  color:white;
+  padding:20px;
+  text-align:center;
+}
+
+.container{
+  padding:20px;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:15px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+button{
+  background:#0b5ea8;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+select{
+  padding:10px;
+  width:100%;
+  margin-top:10px;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:20px;
+}
+
+.menu button{
+  height:60px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>APASU</h1>
+<p>Associació de Pares d'Autisme de Sueca</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>Idioma</h2>
+
+<select id="idioma">
+<option>Valencià</option>
+<option>Castellano</option>
+</select>
+</div>
+
+<div class="card">
+<h2>Accés Demo</h2>
+
+<select id="rol">
+<option>Soci</option>
+<option>Secretaria</option>
+<option>Tresoreria</option>
+<option>Junta Directiva</option>
+<option>Administrador</option>
+</select>
+
+<br><br>
+
+<button onclick="entrar()">
+Entrar
+</button>
+</div>
+
+<div id="app"></div>
+
+</div>
+
+<script>
+
+function entrar(){
+
+let rol=document.getElementById("rol").value;
+
+document.getElementById("app").innerHTML=`
+
+<div class="card">
+<h2>Benvingut/da</h2>
+<p>Rol: ${rol}</p>
+</div>
+
+<div class="menu">
+
+<button>Socis</button>
+
+<button>Activitats</button>
+
+<button>Rebuts</button>
+
+<button>Finances</button>
+
+<button>Comunicats</button>
+
+<button>Inscripcions</button>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
