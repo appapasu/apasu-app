@@ -2,19 +2,19 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCTvqB1bsyHk5yEyZeox-XBdN7hHIMiRtY",
-  authDomain: "apasu-3a362.firebaseapp.com",
-  databaseURL: "https://apasu-3a362-default-rtdb.firebaseio.com",
-  projectId: "apasu-3a362",
-  storageBucket: "apasu-3a362.firebasestorage.app",
-  messagingSenderId: "93172551709",
-  appId: "1:93172551709:web:56cc9ab12fc5c727c6b6f4"
+  apiKey: "AIzaSyCTh2Jd0MVdzp-ZSl7o9a9QERM4Dcvrxvs",
+  authDomain: "apasu-cloud.firebaseapp.com",
+  databaseURL: "https://apasu-cloud-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "apasu-cloud",
+  storageBucket: "apasu-cloud.firebasestorage.app",
+  messagingSenderId: "28779028755",
+  appId: "1:28779028755:web:a60e83b598f85a48dd3ae6"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
 set(ref(db, "prova_connexio"), {
-  missatge: "Firebase connectat amb APASU",
+  missatge: "APASU Cloud connectat",
   data: new Date().toISOString()
 });
