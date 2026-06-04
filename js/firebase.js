@@ -2,16 +2,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "LA_TEUA_API_KEY",
+  apiKey: "AIzaSyCTvqB1bsyHk5yEyZeox-XBdN7hHIMiRtY",
   authDomain: "apasu-3a362.firebaseapp.com",
   databaseURL: "https://apasu-3a362-default-rtdb.firebaseio.com",
   projectId: "apasu-3a362",
-  storageBucket: "apasu-3a362.appspot.com",
+  storageBucket: "apasu-3a362.firebasestorage.app",
   messagingSenderId: "93172551709",
-  appId: "EL_TEU_APP_ID"
+  appId: "1:93172551709:web:56cc9ab12fc5c727c6b6f4"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export { db };
+window.db = db;
